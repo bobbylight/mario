@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<game>
+
+	<levels>
+
+		<level resource="levels/1-1.txt"/>
+		<level resource="levels/1-2.txt"/>
+		<level resource="levels/1-3.txt"/>
+		<level resource="levels/1-4.txt"/>
+
+		<level resource="levels/2-1.txt"/>
+		<level resource="levels/2-2.txt"/>
+		<level resource="levels/2-3.txt"/>
+
+		<level resource="levels/2-4.txt"/>
+
+		<level resource="levels/3-1.txt"/>
+
+	</levels>
+
+
+</game>

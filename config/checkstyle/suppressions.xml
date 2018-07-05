@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+
+    <!-- Being a game, there are lots of magic numbers for now.  TODO: Clean up later -->
+    <suppress files=".*src[\\/]main[\\/].*" checks="MagicNumber"/>
+    <suppress files=".*src[\\/]main[\\/].*" checks="JavadocType"/> <!-- Too much clutter for a game -->
+    <suppress files=".*src[\\/]main[\\/].*[\\/]AreaEditor.java" checks="FileLength"/>
+
+    <suppress files=".*src[\\/](?:integration-)?test[\\/].*" checks="MagicNumber"/>
+    <suppress files=".*src[\\/](?:integration-)?test[\\/].*" checks="JavadocPackage"/>
+    <suppress files=".*src[\\/](?:integration-)?test[\\/].*" checks="JavadocType"/>
+    <suppress files=".*src[\\/](?:integration-)?test[\\/].*" checks="MethodName"/>
+</suppressions>

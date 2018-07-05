@@ -1,0 +1,21 @@
+allprojects {
+
+    wrapper {
+        gradleVersion = '4.8'
+    }
+
+    if (file('src/main/java').directory) {
+        apply plugin: 'java'
+        apply plugin: 'checkstyle'
+
+        sourceCompatibility = 1.8
+
+        checkstyle {
+            configFile file('../config/checkstyle/checkstyle.xml')
+            toolVersion '8.10'
+        }
+    }
+}
+
+group 'org.fife'
+version '0.1.0-SNAPSHOT'
