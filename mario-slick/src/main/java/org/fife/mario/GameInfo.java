@@ -1,19 +1,13 @@
 package org.fife.mario;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fife.mario.level.Level;
 import org.newdawn.slick.SlickException;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 
 /**
@@ -29,70 +23,38 @@ public final class GameInfo {
 	private Level level;
 	private String text;
 
-	private static final String LEVEL				= "level";
-	private static final String RESOURCE			= "resource";
-
 	/**
 	 * The game that is loaded if none is specified as a system property.
 	 */
-	private static final String DEFAULT_GAME_FILE	= "/game.xml";
+	private static final String DEFAULT_GAME_FILE	= "/game.json";
 
 	/**
 	 * The singleton instance of this class.
 	 */
 	private static final GameInfo INSTANCE = new GameInfo();
 
-
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
 	private GameInfo() {
 
-		levels = new ArrayList<>();
-
 		String gameFile = DEFAULT_GAME_FILE;
 
-		InputStream in = getClass().getResourceAsStream(gameFile);
-		BufferedInputStream bin = new BufferedInputStream(in);
-
+		GameData gameData;
 		try {
-			XMLReader xr = createReader();
-			Handler handler = new Handler();
-			xr.setContentHandler(handler);
-			InputSource is = new InputSource(bin);
-			is.setEncoding("UTF-8");
-			xr.parse(is);
-			bin.close();
-		} catch (IOException | SAXException e) {
-			e.printStackTrace();
-		}
+		    gameData = new ObjectMapper().readValue(getClass().getResource(gameFile), GameData.class);
+        } catch (IOException ioe) {
+		    throw new RuntimeException("Failed to load game data in " + gameFile, ioe);
+        }
+
+		levels = gameData.getLevels();
 
 		if (levels.size()==0) {
-			throw new IllegalArgumentException("No levels defined in " +
-												gameFile);
+			throw new IllegalArgumentException("No levels defined in " + gameFile);
 		}
 
 		reset();
-
 	}
-
-
-	/**
-	 * Creates the XML reader to use.  Note that in 1.4 JRE's, the reader
-	 * class wasn't defined by default, but in 1.5+ it is.
-	 *
-	 * @return The XML reader to use.
-	 */
-	private XMLReader createReader() {
-		XMLReader reader = null;
-		try {
-			reader = XMLReaderFactory.createXMLReader();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		}
-		return reader;
-	}
-
 
 	/**
 	 * Returns the singleton instance.
@@ -103,16 +65,13 @@ public final class GameInfo {
 		return INSTANCE;
 	}
 
-
 	public Level getLevel() {
 		return level;
 	}
 
-
 	public String getTextMessage() {
 		return text;
 	}
-
 
 	/**
 	 * Loads the next level, or enters the "you win" state if all levels have
@@ -134,7 +93,6 @@ public final class GameInfo {
 		return true;
 	}
 
-
 	/**
 	 * Resets the game back to level 1-1.
 	 */
@@ -149,29 +107,20 @@ public final class GameInfo {
 		}
 	}
 
-
 	public void setTextMessage(String text) {
 		this.text = text;
 	}
 
+    private static class GameData {
 
-	/**
-	 * Parses an XML game file.
-	 */
-	private class Handler extends DefaultHandler {
+	    private List<String> levels;
 
-		@Override
-		public void startElement(String uri, String localName, String qName,
-									Attributes attrs) {
+	    public List<String> getLevels() {
+	        return new ArrayList<>(levels);
+        }
 
-			if (LEVEL.equals(qName)) {
-				String resource = attrs.getValue(RESOURCE);
-				levels.add(resource);
-			}
-
-		}
-
-	}
-
-
+        public void setLevels(List<String> levels) {
+	        this.levels = levels == null ? Collections.emptyList() : new ArrayList<>(levels);
+        }
+    }
 }

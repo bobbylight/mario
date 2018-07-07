@@ -75,22 +75,20 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 
 	@Override
 	protected AboutDialog createAboutDialog() {
+
 		AboutDialog ad = (AboutDialog)super.createAboutDialog();
-		try {
-			JPanel appPanel = UIUtil.newTabbedPanePanel(new BorderLayout());
-			appPanel.setBorder(UIUtil.getEmpty5Border());
-			BufferedImage img = ImageIO.read(getClass().getResource("/img/AboutImage.png"));
-			JLabel label = new JLabel(new ImageIcon(img));
-			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			appPanel.add(label, BorderLayout.NORTH);
-			String html = getString("Dialog.About.AboutBlurb");
-			SelectableLabel blurb = new SelectableLabel(html);
-			appPanel.add(blurb, BorderLayout.SOUTH);
-			ad.setApplicationPanel(appPanel);
-			ad.pack();
-		} catch (IOException ioe) { // Never happens
-			displayException(ioe);
-		}
+
+        JPanel appPanel = UIUtil.newTabbedPanePanel(new BorderLayout());
+        appPanel.setBorder(UIUtil.getEmpty5Border());
+        JLabel label = new JLabel(new ImageIcon(getClass().getResource("/img/AboutImage.png")));
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        appPanel.add(label, BorderLayout.NORTH);
+        String html = getString("Dialog.About.AboutBlurb");
+        SelectableLabel blurb = new SelectableLabel(html);
+        appPanel.add(blurb, BorderLayout.SOUTH);
+        ad.setApplicationPanel(appPanel);
+        ad.pack();
+
 		return ad;
 	}
 

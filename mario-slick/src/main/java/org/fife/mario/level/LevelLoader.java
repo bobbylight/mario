@@ -53,7 +53,7 @@ final class LevelLoader {
 
 	private static Content getContentForString(String str) throws IOException {
 
-		Content c = null;
+		Content c;
 
 		if (str.startsWith("coin")) {
 			try {

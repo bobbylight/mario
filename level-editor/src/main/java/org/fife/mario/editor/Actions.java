@@ -1,7 +1,6 @@
 package org.fife.mario.editor;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -264,19 +263,15 @@ interface Actions {
                 UIUtil.makeSpringCompactGrid(panel, 3, 2, 5, 5, 5, 5);
                 cp.add(panel, BorderLayout.NORTH);
 
-                JPanel bp = new JPanel(new GridLayout(1, 2, 5, 5));
                 JButton okButton = new JButton(app.getString("Button.OK"));
                 okButton.setActionCommand("OK");
                 okButton.addActionListener(this);
-                bp.add(okButton);
                 JButton cancelButton = new JButton(app.getString("Button.Cancel"));
                 cancelButton.setActionCommand("Cancel");
                 cancelButton.addActionListener(this);
-                bp.add(cancelButton);
-                JPanel temp = new JPanel();
-                temp.add(bp);
-                cp.add(temp, BorderLayout.SOUTH);
+                cp.add(UIUtil.createButtonFooter(okButton, cancelButton), BorderLayout.SOUTH);
 
+                getRootPane().setDefaultButton(okButton);
                 setContentPane(cp);
                 setTitle(app.getString("Dialog.LevelStartInfo.Title"));
                 setModal(true);

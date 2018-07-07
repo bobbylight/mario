@@ -1,7 +1,6 @@
 package org.fife.mario.editor;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -59,19 +58,14 @@ class ResizeDialog extends EscapableDialog implements ActionListener {
 		UIUtil.makeSpringCompactGrid(mainPanel, 2,2, 5,5, 5,5);
 		cp.add(mainPanel, BorderLayout.NORTH);
 
-		JPanel buttonPanel = new JPanel(new GridLayout(1,3, 5,5));
 		okButton = new JButton(parent.getString("Button.OK"));
 		okButton.setActionCommand("OK");
 		okButton.addActionListener(this);
 		getRootPane().setDefaultButton(okButton);
-		buttonPanel.add(okButton);
-		JButton b = new JButton(parent.getString("Button.Cancel"));
-		b.setActionCommand("Cancel");
-		b.addActionListener(this);
-		buttonPanel.add(b);
-		JPanel temp = new JPanel();
-		temp.add(buttonPanel);
-		cp.add(temp, BorderLayout.SOUTH);
+		JButton cancelButton = new JButton(parent.getString("Button.Cancel"));
+		cancelButton.setActionCommand("Cancel");
+		cancelButton.addActionListener(this);
+		cp.add(UIUtil.createButtonFooter(okButton, cancelButton), BorderLayout.SOUTH);
 
 		setContentPane(cp);
 		setTitle(parent.getString("Dialog.Resize.Title"));

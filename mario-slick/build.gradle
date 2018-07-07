@@ -10,6 +10,7 @@ dependencies {
 
     compile 'org.jcraft:jorbis:0.0.17'
     compile files('lib/jogg-0.0.7.jar', 'lib/lwjgl-2.9.3.jar', 'lib/slick.jar')
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
 
     testCompile 'junit:junit:4.12'
 }
