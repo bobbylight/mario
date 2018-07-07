@@ -9,7 +9,7 @@ repositories {
 dependencies {
 
     compile 'org.jcraft:jorbis:0.0.17'
-    compile files('lib/jogg-0.0.7.jar', 'lib/lwjgl.jar', 'lib/slick.jar')
+    compile files('lib/jogg-0.0.7.jar', 'lib/lwjgl-2.9.3.jar', 'lib/slick.jar')
 
     testCompile 'junit:junit:4.12'
 }

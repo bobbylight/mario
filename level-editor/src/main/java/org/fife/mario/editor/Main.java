@@ -557,13 +557,14 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 			pack();
 
 		} catch (IOException ioe) {
-			ResourceBundle msg = getResourceBundle();
-			displayException(this, ioe, msg.getString("Error.Loading"));
+			displayException(this, ioe, getString("Error.Loading"));
 		}
 	}
 
 	@Override
 	protected void preDisplayInit(EditorPrefs prefs, SplashScreen splash) {
+
+	    setTitle(getString("Application.Name"));
 	}
 
 	@Override
@@ -681,7 +682,6 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 				else {
 					content = getContentForString(contentStr);
 				}
-System.out.println(">>> " + contentStr + ", " + content + ", " + hidden);
 			}
 			ec.addBlock(row, col, type, content, text, hidden);
 			blockIndex++;
@@ -820,8 +820,7 @@ System.out.println(">>> " + contentStr + ", " + content + ", " + hidden);
 			return true;
 
 		} catch (IOException ioe) {
-			ResourceBundle msg = getResourceBundle();
-			displayException(this, ioe, msg.getString("Error.Saving"));
+			displayException(this, ioe, getString("Error.Saving"));
 			return false;
 		}
 

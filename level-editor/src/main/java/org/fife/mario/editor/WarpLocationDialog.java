@@ -1,8 +1,6 @@
 package org.fife.mario.editor;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -55,19 +53,16 @@ class WarpLocationDialog extends EscapableDialog implements ActionListener {
 		topPanel.add(Box.createVerticalGlue());
 		cp.add(topPanel, BorderLayout.NORTH);
 
-		JPanel buttonPanel = new JPanel();
-		JPanel temp = new JPanel(new GridLayout(1,2, 5,5));
 		JButton okButton = new JButton(parent.getString("Button.OK"));
 		okButton.setActionCommand("OK");
 		okButton.addActionListener(this);
 		JButton cancelButton = new JButton(parent.getString("Button.Cancel"));
 		cancelButton.setActionCommand("Cancel");
 		cancelButton.addActionListener(this);
-		temp.add(okButton);
-		temp.add(cancelButton);
-		buttonPanel.add(temp);
-		cp.add(buttonPanel, BorderLayout.SOUTH);
+        Container buttons = UIUtil.createButtonFooter(okButton, cancelButton);
+		cp.add(buttons, BorderLayout.SOUTH);
 
+		getRootPane().setDefaultButton(cancelButton);
 		setContentPane(cp);
 		setModal(true);
 		setTitle(parent.getString("Dialog.WarpLocation.Title"));

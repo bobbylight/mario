@@ -3,15 +3,7 @@ package org.fife.mario.editor;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Action;
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import javax.swing.*;
 
 import org.fife.mario.Constants;
 import org.fife.ui.CustomizableToolBar;
@@ -30,8 +22,7 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 
 	private Main app;
 	private JLabel layeredComboLabel;
-	private JComboBox layerCombo;
-
+	private JComboBox<String> layerCombo;
 
 	/**
 	 * Constructor.
@@ -55,25 +46,24 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 		addBigSeparator();
 
 		ButtonGroup bg = new ButtonGroup();
-		JToggleButton tb = new JToggleButton(
-						new SetModeAction(EditMode.PAINT, "PaintMode"));
-		tb.setIcon(new ImageIcon("img/paintbrush.png"));
+		JToggleButton tb = new JToggleButton(new SetModeAction(EditMode.PAINT, "PaintMode"));
+        tb.setIcon(createIcon("/img/paintbrush.png"));
 		tb.setSelected(true);
 		bg.add(tb);
 		add(tb);
 
 		tb = new JToggleButton(new SetModeAction(EditMode.FILL, "FillMode"));
-		tb.setIcon(new ImageIcon("img/paintcan.png"));
+		tb.setIcon(createIcon("/img/paintcan.png"));
 		bg.add(tb);
 		add(tb);
 
 		tb = new JToggleButton(new SetModeAction(EditMode.DELETE, "DeleteMode"));
-		tb.setIcon(new ImageIcon("img/pencil_delete.png"));
+		tb.setIcon(createIcon("/img/pencil_delete.png"));
 		bg.add(tb);
 		add(tb);
 
 		tb = new JToggleButton(new SetModeAction(EditMode.EDIT, "EditMode"));
-		tb.setIcon(new ImageIcon("img/image_edit.png"));
+		tb.setIcon(createIcon("/img/image_edit.png"));
 		bg.add(tb);
 		add(tb);
 
@@ -85,7 +75,7 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 				app.getString("Layer.Middle"),
 				app.getString("Layer.Background"),
 		};
-		layerCombo = new JComboBox(choices);
+		layerCombo = new JComboBox<>(choices);
 		layerCombo.addActionListener(this);
 		layerCombo.setSelectedIndex(Constants.MIDDLE);
 		layeredComboLabel.setLabelFor(layerCombo);
@@ -99,7 +89,7 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 
 	/**
 	 * Called when the active layer changes.
-	 * @param e
+	 * @param e The action performed.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (app.getPaintLayerRule()!=Main.LAYER_ALL) {
@@ -113,6 +103,10 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 		addSeparator();
 		add(Box.createHorizontalStrut(8));
 	}
+
+    private Icon createIcon(String resource) {
+        return new ImageIcon(getClass().getResource(resource));
+    }
 
 	private JButton createToolBarButton(Action a) {
 		JButton b = new JButton(a);

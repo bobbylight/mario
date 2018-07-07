@@ -38,13 +38,13 @@ class MenuBar extends org.fife.ui.app.MenuBar {
 		ResourceBundle msg = app.getResourceBundle();
 
 		JMenu menu = createMenu(msg, "File");
-		menu.add(new JMenuItem(app.getAction(Main.NEW_ACTION_KEY)));
-		menu.add(new JMenuItem(app.getAction(Main.OPEN_ACTION_KEY)));
-		menu.add(new JMenuItem(app.getAction(Main.SAVE_ACTION_KEY)));
-		menu.add(new JMenuItem(app.getAction(Main.SAVE_AS_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.NEW_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.OPEN_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.SAVE_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.SAVE_AS_ACTION_KEY)));
 		menu.addSeparator();
-		menu.add(new JMenuItem(app.getAction(Main.NEW_AREA_ACTION_KEY)));
-		menu.add(new JMenuItem(app.getAction(Main.DELETE_AREA_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.NEW_AREA_ACTION_KEY)));
+		menu.add(createMenuItem(app.getAction(Main.DELETE_AREA_ACTION_KEY)));
 		menu.addSeparator();
 		JMenuItem item = createMenuItem(msg, "Exit");
 		item.setAction(app.getAction(Main.EXIT_ACTION_KEY));
@@ -140,14 +140,14 @@ class MenuBar extends org.fife.ui.app.MenuBar {
 
 
 	private JCheckBoxMenuItem addCBItem(Action a, JMenu menu) {
-		JCheckBoxMenuItem item = new JCheckBoxMenuItem(a);
+		JCheckBoxMenuItem item = createCheckBoxMenuItem(a);
 		menu.add(item);
 		return item;
 	}
 
 
 	private JRadioButtonMenuItem addRBItem(Action a, ButtonGroup bg, JMenu menu) {
-		JRadioButtonMenuItem item = new JRadioButtonMenuItem(a);
+		JRadioButtonMenuItem item = createRadioButtonMenuItem(a, null);
 		bg.add(item);
 		menu.add(item);
 		return item;

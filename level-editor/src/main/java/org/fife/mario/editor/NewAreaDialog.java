@@ -1,7 +1,6 @@
 package org.fife.mario.editor;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -61,6 +60,7 @@ class NewAreaDialog extends EscapableDialog implements ActionListener {
 		JPanel mainPanel = new JPanel(new SpringLayout());
 		mainPanel.add(new JLabel(parent.getString("Dialog.NewLevelOrArea.Name")));
 		nameField = new JTextField(20);
+        nameField.getDocument().addDocumentListener(l);
 		if (level) {
 			nameField.setText("main");
 			nameField.setEnabled(false);
@@ -84,20 +84,17 @@ class NewAreaDialog extends EscapableDialog implements ActionListener {
 		topPanel.add(Box.createVerticalGlue());
 		cp.add(topPanel, BorderLayout.NORTH);
 
-		JPanel buttonPanel = new JPanel(new GridLayout(1,3, 5,5));
 		okButton = new JButton(parent.getString("Button.OK"));
+		okButton.setEnabled(false);
 		okButton.setActionCommand("OK");
 		okButton.addActionListener(this);
-		getRootPane().setDefaultButton(okButton);
-		buttonPanel.add(okButton);
-		JButton b = new JButton(parent.getString("Button.Cancel"));
-		b.setActionCommand("Cancel");
-		b.addActionListener(this);
-		buttonPanel.add(b);
-		JPanel temp = new JPanel();
-		temp.add(buttonPanel);
-		cp.add(temp, BorderLayout.SOUTH);
+		JButton cancelButton = new JButton(parent.getString("Button.Cancel"));
+		cancelButton.setActionCommand("Cancel");
+		cancelButton.addActionListener(this);
+        Container buttons = UIUtil.createButtonFooter(okButton, cancelButton);
+        cp.add(buttons, BorderLayout.SOUTH);
 
+        getRootPane().setDefaultButton(okButton);
 		setContentPane(cp);
 		String paramKey = level ? "Dialog.NewLevel" : "Dialog.NewArea";
 		String title = parent.getString("Dialog.NewLevelOrArea.Title",
@@ -150,19 +147,23 @@ class NewAreaDialog extends EscapableDialog implements ActionListener {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void setVisible(boolean visible) {
+
 		if (visible) {
+
 			Main app = (Main)getOwner();
 			int rows = app.getAreaEditor("main").getRowCount();
 			int cols = app.getAreaEditor("main").getColumnCount();
 			rowField.setText(Integer.toString(rows));
 			colField.setText(Integer.toString(cols));
+
+			JTextField focusedField = nameField.isEnabled() ? nameField : rowField;
+			focusedField.requestFocusInWindow();
+
 			nli = null;
 		}
+
 		super.setVisible(visible);
 	}
 
@@ -177,19 +178,30 @@ class NewAreaDialog extends EscapableDialog implements ActionListener {
 		}
 
 		private void handleDocumentEvent(DocumentEvent e) {
+
 			boolean valid = true;
-			try {
-				int rows = Integer.parseInt(rowField.getText());
-				if (rows<MIN_ROW_COUNT) {
-					throw new NumberFormatException();
-				}
-				int cols = Integer.parseInt(colField.getText());
-				if (cols<=0) {
-					throw new NumberFormatException();
-				}
-			} catch (NumberFormatException nfe) {
-				valid = false;
-			}
+
+			// Area name field
+            if (nameField.getText().isEmpty()) {
+                valid = false;
+            }
+
+            if (valid) {
+                // Row and column fields
+                try {
+                    int rows = Integer.parseInt(rowField.getText());
+                    if (rows < MIN_ROW_COUNT) {
+                        throw new NumberFormatException();
+                    }
+                    int cols = Integer.parseInt(colField.getText());
+                    if (cols <= 0) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException nfe) {
+                    valid = false;
+                }
+            }
+
 			okButton.setEnabled(valid);
 		}
 
