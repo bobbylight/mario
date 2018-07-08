@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 repositories {
@@ -13,4 +14,50 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
 
     testCompile 'junit:junit:4.12'
+}
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+applicationName = 'mario'
+mainClassName = 'org.fife.mario.Main'
+
+def nativesSubdir = project.findProperty('nativesSubdir') ?: null
+if (nativesSubdir == null) {
+    // Default to the current OS
+    nativesSubdir = 'windows'
+    if (Os.isFamily(Os.FAMILY_MAC)) {
+        nativesSubdir = 'macosx'
+    }
+    else if (Os.isFamily(Os.FAMILY_UNIX)) {
+        nativesSubdir = 'linux'
+    }
+}
+// The generated start scripts define an APP_HOME environment variable. We'll use that to allow the native path
+// to be properly referenced no matter where the start script is started from.  The shell script will have its
+// syntax fixed below.
+applicationDefaultJvmArgs = [ "-Djava.library.path=%APP_HOME%/lib/native/${nativesSubdir}" ]
+
+task createStartScripts(type: CreateStartScripts) {
+    applicationName = 'mario'
+}
+
+distributions {
+    main {
+        baseName = 'mario'
+        contents {
+            into ('lib/native') {
+                from 'lib/native'
+            }
+        }
+    }
+}
+
+startScripts {
+    doLast {
+        // Ensure the path to LWJGL natives is absolute so it's found no matter where the game is started from.
+        // Also have to make sure the APP_HOME variable isn't escaped like it is by default
+        unixScript.text = unixScript.text.replace("DEFAULT_JVM_OPTS='\"", "DEFAULT_JVM_OPTS=\"").replace('"\'', '"')
+                                .replace('%APP_HOME%', '${APP_HOME}')
+        windowsScript.text = windowsScript.text.replace('%%APP_HOME%%', '%APP_HOME%')
+    }
 }

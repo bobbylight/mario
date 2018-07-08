@@ -13,10 +13,8 @@ import org.fife.ui.app.AbstractGUIApplication;
 import org.fife.ui.app.GUIApplication;
 import org.fife.ui.rtextfilechooser.RTextFileChooser;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ResourceBundle;
 
