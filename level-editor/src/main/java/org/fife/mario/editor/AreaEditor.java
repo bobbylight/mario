@@ -156,7 +156,7 @@ public class AreaEditor extends JComponent implements Scrollable {
         blocks.put(new Position(row, col), bi);
     }
 
-    public boolean addEnemy(Position pos, int type) {
+    public boolean addEnemy(Position pos, Integer type) {
         if (type>-1) {
             if (type!=enemies.get(pos)) {
                 enemies.put(pos, type);
@@ -169,7 +169,7 @@ public class AreaEditor extends JComponent implements Scrollable {
         return false;
     }
 
-    public boolean addOther(Position pos, int type) {
+    public boolean addOther(Position pos, Integer type) {
         if (type>-1) {
             if (type!=others.get(pos)) {
                 others.put(pos, type);
