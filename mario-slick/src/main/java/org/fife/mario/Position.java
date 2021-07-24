@@ -22,7 +22,7 @@ public class Position implements Comparable<Position>, Cloneable {
 
 	@Override
 	public Position clone() {
-		Position pos = null;
+		Position pos;
 		try {
 			pos = (Position)super.clone();
 		} catch (CloneNotSupportedException cnse) { // Never happens

@@ -47,7 +47,7 @@ public class PowerUpAnimation extends Animation {
 	@Override
 	public Character dispose(Mario mario) {
 
-		AbstractPowerUp entity = null;
+		AbstractPowerUp entity;
 
 		switch (powerUp) {
 			default:

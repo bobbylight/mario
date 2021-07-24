@@ -95,7 +95,7 @@ public class LevelFileReader {
 	 */
 	public String readLine() throws IOException {
 
-		String line = null;
+		String line;
 
 		do {
 			line = r.readLine();

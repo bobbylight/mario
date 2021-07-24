@@ -63,7 +63,7 @@ public class AreaEditor extends JComponent implements Scrollable {
     private static final Composite ALPHA_COMPOSITE =
         AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
     private static final Stroke SELECTED_STROKE =
-        new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.CAP_ROUND);
+        new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 
     private static final long serialVersionUID = 1L;
 
@@ -551,7 +551,7 @@ public class AreaEditor extends JComponent implements Scrollable {
     @Override
     public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 
-        int increment = 0;
+        int increment;
 
         if (orientation==SwingConstants.VERTICAL) {
             increment = visibleRect.height;
@@ -596,7 +596,7 @@ public class AreaEditor extends JComponent implements Scrollable {
     public int getScrollableUnitIncrement(Rectangle visibleRect,
                                         int orientation, int direction) {
 
-        int increment = 0;
+        int increment;
 
         if (orientation==SwingConstants.VERTICAL) {
             increment = scaledTileWidth;
@@ -1107,7 +1107,7 @@ private Position tempPoint = new Position();
 
     }
 
-    public void printBlockInfo(PrintWriter w) throws IOException {
+    public void printBlockInfo(PrintWriter w) {
 
         w.println("# Blocks and Coins");
         w.println(getBlockCount());
@@ -1151,7 +1151,7 @@ private Position tempPoint = new Position();
                 }
             }
 
-            w.println(sb.toString());
+            w.println(sb);
             index++;
 
         }

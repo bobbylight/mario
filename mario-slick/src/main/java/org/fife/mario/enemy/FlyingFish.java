@@ -181,7 +181,7 @@ public class FlyingFish extends Enemy {
 	/**
 	 * Animation of this fish dying.
 	 */
-	private class DyingAnimation extends Animation {
+	private static class DyingAnimation extends Animation {
 
 		private org.newdawn.slick.Animation anim;
 		private float dx;

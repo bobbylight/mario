@@ -357,7 +357,7 @@ System.out.println("... ... ... setting starting location: " + x + ", " + y);
 			float x = col*32;
 			float y = row*32;
 
-			org.fife.mario.Character c = null;
+			org.fife.mario.Character c;
 
 			try {
 				String type = parms[1];

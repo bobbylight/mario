@@ -218,7 +218,7 @@ interface Actions {
             }
         }
 
-        private class LevelStartInfoDialog extends EscapableDialog
+        private static class LevelStartInfoDialog extends EscapableDialog
             implements ActionListener {
 
             private static final long serialVersionUID = 1L;

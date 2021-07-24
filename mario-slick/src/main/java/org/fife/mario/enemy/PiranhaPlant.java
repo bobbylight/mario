@@ -57,7 +57,7 @@ public class PiranhaPlant extends Enemy {
 			SoundEngine.get().play(SoundEngine.SOUND_KICK);
 			return true;
 		}
-		else if ((ch instanceof Shell) && ((Shell)ch).isMoving()) {
+		else if ((ch instanceof Shell) && ch.isMoving()) {
 			PoofAnimation anim = new PoofAnimation(getCenterX(), getCenterY());
 			area.addTemporaryAnimation(anim);
 			SoundEngine.get().play(SoundEngine.SOUND_KICK);

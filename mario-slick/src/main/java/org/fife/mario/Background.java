@@ -1,6 +1,5 @@
 package org.fife.mario;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.newdawn.slick.Color;
@@ -96,7 +95,7 @@ public class Background {
 	}
 
 
-	public void setImage(String name) throws IOException {
+	public void setImage(String name) {
 
 // Destroying the images here seems to be permanent.  Re-creating new Image's
 // results in a solid white Image, guess the texture caching is messing things

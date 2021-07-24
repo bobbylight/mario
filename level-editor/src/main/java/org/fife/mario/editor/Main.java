@@ -835,7 +835,7 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 			}
 			flags.append("water");
 		}
-		w.println("Flags=" + flags.toString());
+		w.println("Flags=" + flags);
 
 		// Header
 		w.println(ec.getRowCount() + " " + ec.getColumnCount());
@@ -975,16 +975,14 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 	 * @param args The command line arguments.
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					String laf = UIManager.getSystemLookAndFeelClassName();
-					UIManager.setLookAndFeel(laf);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				new Main();
-			}
-		});
+		SwingUtilities.invokeLater(() -> {
+            try {
+                String laf = UIManager.getSystemLookAndFeelClassName();
+                UIManager.setLookAndFeel(laf);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new Main();
+        });
 	}
 }

@@ -88,7 +88,7 @@ public final class TilesetInfo {
 	 */
 	public static TilesetInfo getInfo(String tileset) {
 
-		int[] info = null;
+		int[] info;
 
 		if (TILESET_GROUND_BROWN.equals(tileset)) {
 			info = INFO_GROUND;

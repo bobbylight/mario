@@ -365,13 +365,13 @@ public class TilePalette extends JComponent implements
 
 
 	public String getEnemyName(int index) {
-		return ((EnemyInfo)enemyListModel.get(index)).getShortName();
+		return enemyListModel.get(index).getShortName();
 	}
 
 
 	public int getEnemyType(String shortName) {
 		for (int i=0; i<enemyListModel.getSize(); i++) {
-			EnemyInfo ei = (EnemyInfo)enemyListModel.get(i);
+			EnemyInfo ei = enemyListModel.get(i);
 			if (ei.getShortName().equals(shortName)) {
 				return i;
 			}
@@ -390,13 +390,13 @@ public class TilePalette extends JComponent implements
 
 
 	public String getOtherName(int index) {
-		return ((EntityInfo)otherListModel.get(index)).getShortName();
+		return otherListModel.get(index).getShortName();
 	}
 
 
 	public int getOtherType(String shortName) {
 		for (int i=0; i<otherListModel.getSize(); i++) {
-			EntityInfo ei = (EntityInfo)otherListModel.get(i);
+			EntityInfo ei = otherListModel.get(i);
 			if (ei.getShortName().equals(shortName)) {
 				return i;
 			}
@@ -414,7 +414,7 @@ public class TilePalette extends JComponent implements
 
 
 	public void paintEnemy(int enemy, Graphics2D g, int x, int y, float scale) {
-		EnemyInfo ei = (EnemyInfo)enemyListModel.get(enemy);
+		EnemyInfo ei = enemyListModel.get(enemy);
 		Image img = ((ImageIcon)ei.getIcon()).getImage();
 		x = x + 32 - img.getWidth(null);
 		y = y + 32 - img.getHeight(null);
@@ -454,7 +454,7 @@ public class TilePalette extends JComponent implements
 
 	private void setSelectedEnemy(int enemy) {
 
-		Icon icon = ((EnemyInfo)enemyListModel.get(enemy)).getIcon();
+		Icon icon = enemyListModel.get(enemy).getIcon();
 		setSelectedItemImage(((ImageIcon)icon).getImage());
 
 		parent.setSelectedTileData(ObjectType.ENEMY, enemy);
@@ -477,7 +477,7 @@ public class TilePalette extends JComponent implements
 
 
 	private void setSelectedOther(int other) {
-		EntityInfo ei = (EntityInfo)otherListModel.get(other);
+		EntityInfo ei = otherListModel.get(other);
 		setSelectedItemImage(((ImageIcon)ei.getIcon()).getImage());
 		parent.setSelectedTileData(ObjectType.OTHER, other);
 		lastOtherIndex = other;
@@ -546,13 +546,13 @@ public class TilePalette extends JComponent implements
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource()==enemyList) {
-			EnemyInfo ei = (EnemyInfo)enemyList.getSelectedValue();
+			EnemyInfo ei = enemyList.getSelectedValue();
 			if (ei!=null) {
 				setSelectedEnemy(enemyList.getSelectedIndex());
 			}
 		}
 		else if (e.getSource()==otherList) {
-			EntityInfo ei = (EntityInfo)otherList.getSelectedValue();
+			EntityInfo ei = otherList.getSelectedValue();
 			if (ei!=null) {
 				setSelectedOther(otherList.getSelectedIndex());
 			}

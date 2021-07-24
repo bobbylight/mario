@@ -80,7 +80,7 @@ public class Goomba extends Enemy {
 		if (ch instanceof Fireball) {
 			return kickedBy(ch); // Create dying animation
 		}
-		else if ((ch instanceof Shell) && ((Shell)ch).isMoving()) {
+		else if ((ch instanceof Shell) && ch.isMoving()) {
 			return kickedBy(ch); // Create dying animation
 		}
 		else if (ch instanceof AbstractPowerUp) {
@@ -280,7 +280,7 @@ return false;
 	}
 
 
-	private class DyingAnimation extends Animation {
+	private static class DyingAnimation extends Animation {
 
 		private org.newdawn.slick.Animation anim;
 		private float dx;

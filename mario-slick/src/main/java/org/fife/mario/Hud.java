@@ -96,7 +96,6 @@ public class Hud {
 	private void renderNumber(Graphics g, float x, float y, String num,
 			boolean yellow) {
 
-		int srcX = 0;
 		int srcY = 66;
 		if (yellow) {
 			srcY = 86;
@@ -104,7 +103,7 @@ public class Hud {
 
 		for (int i = 0; i < num.length(); i++) {
 			int digit = num.charAt(i) - '0';
-			srcX = digit * 18;
+			int srcX = digit * 18;
             hudImage.draw(x, y, x + DIGIT_WIDTH, y + 14, srcX, srcY, srcX + DIGIT_WIDTH, srcY + 14);
 			x += DIGIT_WIDTH;
 		}

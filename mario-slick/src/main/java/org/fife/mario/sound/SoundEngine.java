@@ -50,7 +50,7 @@ public abstract class SoundEngine {
 
 	static {
 
-		String prefix = null;
+		String prefix;
 		ClassLoader cl = SoundEngine.class.getClassLoader();
 		if (cl.getResource("sounds/high-def")!=null) {
 			prefix = "sounds/high-def/";

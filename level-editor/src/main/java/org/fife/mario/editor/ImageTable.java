@@ -155,7 +155,7 @@ abstract class ImageTable extends JTable implements ListSelectionListener {
 	/**
 	 * The model for this table.
 	 */
-	private class Model extends DefaultTableModel {
+	private static class Model extends DefaultTableModel {
 
 		private static final long serialVersionUID = 1L;
 
