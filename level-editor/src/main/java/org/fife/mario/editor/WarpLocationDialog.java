@@ -23,7 +23,7 @@ class WarpLocationDialog extends EscapableDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private WarpInfo info;
-	private JComboBox areaCombo;
+	private JComboBox<String> areaCombo;
 	private JTextField rowField;
 	private JTextField colField;
 
@@ -41,7 +41,7 @@ class WarpLocationDialog extends EscapableDialog implements ActionListener {
 
 		Box topPanel = Box.createVerticalBox();
 		JLabel label = new JLabel(parent.getString("Dialog.WarpLocation.Area"));
-		areaCombo = new JComboBox(areas);
+		areaCombo = new JComboBox<>(areas);
 		areaCombo.setEditable(false);
 		addLabeled(topPanel, label, areaCombo);
 		label = new JLabel(parent.getString("Dialog.WarpLocation.DestRow"));

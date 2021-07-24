@@ -11,8 +11,8 @@ repositories {
 
 dependencies {
 
-    compile 'com.fifesoft.rtext:fife.common:2.6.3'
-    compile project(':mario-slick')
+    implementation 'com.fifesoft.rtext:fife.common:2.6.3'
+    implementation project(':mario-slick')
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }

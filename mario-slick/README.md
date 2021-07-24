@@ -22,9 +22,9 @@ To build the executable package for a different OS, specify the proper
 subdirectory for the natives:
 
 ```bash
-./gradlew build/installDist -PnativesSubdir=windows
-./gradlew build/installDist -PnativesSubdir=macosx
-./gradlew build/installDist -PnativesSubdir=solaris
+./gradlew build installDist -PnativesSubdir=windows
+./gradlew build installDist -PnativesSubdir=macosx
+./gradlew build installDist -PnativesSubdir=solaris
 ```
 
 ## To-Do/Bugs

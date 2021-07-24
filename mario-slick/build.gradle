@@ -9,11 +9,11 @@ repositories {
 
 dependencies {
 
-    compile 'org.jcraft:jorbis:0.0.17'
-    compile files('lib/jogg-0.0.7.jar', 'lib/lwjgl-2.9.3.jar', 'lib/slick.jar')
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
+    implementation 'org.jcraft:jorbis:0.0.17'
+    implementation files('lib/jogg-0.0.7.jar', 'lib/lwjgl-2.9.3.jar', 'lib/slick.jar')
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 import org.apache.tools.ant.taskdefs.condition.Os
@@ -43,7 +43,7 @@ task createStartScripts(type: CreateStartScripts) {
 
 distributions {
     main {
-        baseName = 'mario'
+        distributionBaseName = 'mario'
         contents {
             into ('lib/native') {
                 from 'lib/native'

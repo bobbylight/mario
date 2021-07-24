@@ -108,7 +108,7 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 
 		addAction(DELETE_AREA_ACTION_KEY, new DeleteAreaAction(this, "DeleteArea"));
 
-		addAction(EXIT_ACTION_KEY, new ExitAction(this, msg, "Exit"));
+		addAction(EXIT_ACTION_KEY, new ExitAction<>(this, msg, "Exit"));
 
 		addAction(UNDO_ACTION_KEY, new UndoAction(this, "Undo"));
 
@@ -164,17 +164,17 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 		a = new ToggleWaterPhysicsAction(this, msg, "WaterPhysics");
 		addAction(TOGGLE_WATER_PHYSICS_ACTION_KEY, a);
 
-		a = new ToggleToolBarAction(this, msg, "ToolBar");
+		a = new ToggleToolBarAction<>(this, msg, "ToolBar");
 		addAction(VIEW_TOOLBAR_ACTION_KEY, a);
 
-		a = new ToggleStatusBarAction(this, msg, "StatusBar");
+		a = new ToggleStatusBarAction<>(this, msg, "StatusBar");
 		addAction(VIEW_STATUS_BAR_ACTION_KEY, a);
 
-		a = new GUIApplication.HelpAction(this, msg, "HelpTopics");
+		a = new GUIApplication.HelpAction<>(this, msg, "HelpTopics");
 		a.setIcon(new ImageIcon("img/help.png"));
 		addAction(HELP_ACTION_KEY, a);
 
-		a = new GUIApplication.AboutAction(this, msg, "About");
+		a = new GUIApplication.AboutAction<>(this, msg, "About");
 		addAction(ABOUT_ACTION_KEY, a);
 
 		a = new EditWarpLocationAction(this, msg, "EditWarpLocation");

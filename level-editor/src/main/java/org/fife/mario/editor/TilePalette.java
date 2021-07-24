@@ -57,10 +57,10 @@ public class TilePalette extends JComponent implements
 	private int tileW;
 	private int tileH;
 	private int spacing;
-	private JList enemyList;
-	private DefaultListModel enemyListModel;
-	private JList otherList;
-	private DefaultListModel otherListModel;
+	private JList<EnemyInfo> enemyList;
+	private DefaultListModel<EnemyInfo> enemyListModel;
+	private JList<EntityInfo> otherList;
+	private DefaultListModel<EntityInfo> otherListModel;
 	private JLabel selectedItemLabel;
 //	private PropertySheet newTilePropSheet;
 	private JPanel extraInfoPanel;
@@ -113,7 +113,7 @@ public class TilePalette extends JComponent implements
 		TitledPanel blockPanel = new TitledPanel("Blocks", temp, TitledPanel.LINE_BORDER);
 
 		enemyListModel = createEnemyListModel();
-		enemyList = new JList(enemyListModel);
+		enemyList = new JList<>(enemyListModel);
 		enemyList.setVisibleRowCount(5);
 		enemyList.setCellRenderer(new EnemyListCellRenderer());
 		enemyList.setSelectionModel(new RListSelectionModel());
@@ -123,7 +123,7 @@ public class TilePalette extends JComponent implements
 		TitledPanel enemyPanel = new TitledPanel("Enemies", sp, TitledPanel.LINE_BORDER);
 
 		otherListModel = createOtherListModel();
-		otherList = new JList(otherListModel);
+		otherList = new JList<>(otherListModel);
 		otherList.setVisibleRowCount(5);
 		otherList.setCellRenderer(new EntityListCellRenderer());
 		otherList.setSelectionModel(new RListSelectionModel());
@@ -236,9 +236,9 @@ public class TilePalette extends JComponent implements
 	}
 
 
-	private DefaultListModel createEnemyListModel() throws IOException {
+	private DefaultListModel<EnemyInfo> createEnemyListModel() throws IOException {
 
-		DefaultListModel model = new DefaultListModel();
+		DefaultListModel<EnemyInfo> model = new DefaultListModel<>();
 
 		// Images from which several enemies are created.
 		BufferedImage marioImg = ImageIO.read(getClass().getResource("/img/mario_wip.png"));
@@ -307,9 +307,9 @@ public class TilePalette extends JComponent implements
 	}
 
 
-	private DefaultListModel createOtherListModel() throws IOException {
+	private DefaultListModel<EntityInfo> createOtherListModel() throws IOException {
 
-		DefaultListModel model = new DefaultListModel();
+		DefaultListModel<EntityInfo> model = new DefaultListModel<>();
 
 		BufferedImage img = ImageIO.read(getClass().getResource("/img/goal_small.png"));
 		img = Utils.createImageWithAlpha(img);

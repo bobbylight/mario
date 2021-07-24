@@ -223,7 +223,7 @@ interface Actions {
 
             private static final long serialVersionUID = 1L;
 
-            private JComboBox animCombo;
+            private JComboBox<String> animCombo;
             private JTextField rowField;
             private JTextField colField;
             private LevelStartInfo info;
@@ -238,7 +238,7 @@ interface Actions {
 
                 JPanel panel = new JPanel(new SpringLayout());
                 JLabel animLabel = new JLabel(app.getString("Dialog.LevelStartInfo.Animation"));
-                animCombo = new JComboBox(LevelStartInfo.LEVEL_START_ANIMS);
+                animCombo = new JComboBox<>(LevelStartInfo.LEVEL_START_ANIMS);
                 animCombo.setSelectedItem(lsi.getAnimation());
                 animCombo.setEditable(false);
                 JLabel rowLabel = new JLabel(app.getString("Dialog.LevelStartInfo.Row"));
