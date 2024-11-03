@@ -1,7 +1,7 @@
 allprojects {
 
     wrapper {
-        gradleVersion = '7.1.1'
+        gradleVersion = '8.10.2'
     }
 
     if (file('src/main/java').directory) {
@@ -9,8 +9,8 @@ allprojects {
         apply plugin: 'checkstyle'
 
         compileJava {
-            sourceCompatibility '1.8'
-            targetCompatibility '1.8'
+            sourceCompatibility '17'
+            targetCompatibility '17'
             options.debug = true
             options.debugOptions.debugLevel = 'source,vars,lines'
             options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'

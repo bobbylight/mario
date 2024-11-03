@@ -22,19 +22,21 @@ import org.fife.ui.app.AppAction;
  * @author Robert Futrell
  * @version 1.0
  */
-class MenuBar extends org.fife.ui.app.MenuBar {
+class MenuBar extends org.fife.ui.app.MenuBar<Main> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Main app;
 	private JMenu bgMenu;
 	private JMenu tilesetMenu;
 	private JMenu musicMenu;
 
 	MenuBar(Main app) {
+        super(app);
+    }
 
-		this.app = app;
-
+    @Override
+    protected void initializeUI() {
+        Main app = getApplication();
 		ResourceBundle msg = app.getResourceBundle();
 
 		JMenu menu = createMenu(msg, "File");
@@ -201,6 +203,7 @@ class MenuBar extends org.fife.ui.app.MenuBar {
 		}
 
 		// Set checked state for all flag-related actions.
+        Main app = getApplication();
 		app.getAction(Main.TOGGLE_FLYING_FISH_ACTION_KEY).putValue(
 									Action.SELECTED_KEY, ec.getFlyingFish());
 		app.getAction(Main.TOGGLE_WATER_PHYSICS_ACTION_KEY).putValue(
@@ -210,6 +213,7 @@ class MenuBar extends org.fife.ui.app.MenuBar {
 
 
 	private JCheckBoxMenuItem createCBItem(String actionKey) {
+        Main app = getApplication();
 		JCheckBoxMenuItem item= new JCheckBoxMenuItem(app.getAction(actionKey));
 		item.setSelected(true);
 		return item;
@@ -231,7 +235,7 @@ class MenuBar extends org.fife.ui.app.MenuBar {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			app.setBackgroundImageName(img);
+			getApplication().setBackgroundImageName(img);
 		}
 
 		public String getImage() {

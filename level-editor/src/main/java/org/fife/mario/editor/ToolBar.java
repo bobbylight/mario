@@ -76,8 +76,8 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 				app.getString("Layer.Background"),
 		};
 		layerCombo = new JComboBox<>(choices);
-		layerCombo.addActionListener(this);
 		layerCombo.setSelectedIndex(Constants.MIDDLE);
+        layerCombo.addActionListener(this);
 		layeredComboLabel.setLabelFor(layerCombo);
 		add(layeredComboLabel);
 		JPanel temp = new JPanel(new BorderLayout());

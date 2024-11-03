@@ -56,7 +56,7 @@ startScripts {
     doLast {
         // Ensure the path to LWJGL natives is absolute so it's found no matter where the game is started from.
         // Also have to make sure the APP_HOME variable isn't escaped like it is by default
-        unixScript.text = unixScript.text.replace("DEFAULT_JVM_OPTS='\"", "DEFAULT_JVM_OPTS=\"").replace('"\'', '"')
+        unixScript.text = unixScript.text.replaceAll("DEFAULT_JVM_OPTS='\"(.+)\"'", "DEFAULT_JVM_OPTS=\"\$1\"")
                                 .replace('%APP_HOME%', '${APP_HOME}')
         windowsScript.text = windowsScript.text.replace('%%APP_HOME%%', '%APP_HOME%')
     }

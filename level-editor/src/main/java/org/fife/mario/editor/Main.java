@@ -12,6 +12,7 @@ import org.fife.ui.SplashScreen;
 import org.fife.ui.app.AbstractGUIApplication;
 import org.fife.ui.app.GUIApplication;
 import org.fife.ui.rtextfilechooser.RTextFileChooser;
+import org.fife.util.MacOSUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,8 +55,8 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 
 	private static final long serialVersionUID = 1;
 
-	public Main() {
-		super("LevelEditor.jar");
+	public Main(EditorAppContext context, EditorPrefs prefs) {
+		super(context, "Mario Level Editor", prefs);
 		dirty = false;
 		paintBackground = true;
 		paintLayerRule = LAYER_ALL;
@@ -244,6 +245,12 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 		return new ToolBar(this);
 	}
 
+    @Override
+    public void doExit() {
+        savePreferences();
+        super.doExit();
+    }
+
 	/**
 	 * Verifies that the specified layer is valid.
 	 *
@@ -359,17 +366,12 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 	}
 
 	/**
-	 * Returns the rule for determing whether a layer should be painted.
+	 * Returns the rule for determining whether a layer should be painted.
 	 *
 	 * @return The rule.
 	 */
 	int getPaintLayerRule() {
 		return paintLayerRule;
-	}
-
-	@Override
-	protected String getPreferencesClassName() {
-		return null;
 	}
 
 	@Override
@@ -510,7 +512,7 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 	/**
 	 * Gives the user a JFileChooser to open a file.
 	 *
-	 * @see #openFile(String)
+	 * @see #openFile(File)
 	 */
 	public void openFile() {
 		if (chooser==null) {
@@ -518,17 +520,17 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 		}
 		int rc = chooser.showOpenDialog(this);
 		if (rc==RTextFileChooser.APPROVE_OPTION) {
-			openFile(chooser.getSelectedFile().getAbsolutePath());
+			openFile(chooser.getSelectedFile());
 		}
 	}
 
 	@Override
-	public void openFile(String fileName) {
+	public void openFile(File file) {
 
 		try {
 
 			EditorTabbedPane tabPane = new EditorTabbedPane(this);
-			LevelFileReader r = new LevelFileReader(new File(fileName));
+			LevelFileReader r = new LevelFileReader(file);
 
 			String areaCountStr = r.readKeyValueLine("AreaCount");
 			int areaCount = Integer.parseInt(areaCountStr);
@@ -547,7 +549,7 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 
 			// Create and use a whole new tabbed pane, in case the load
 			// fails in the middle.
-			this.file = new File(fileName);
+			this.file = file;
 			splitPane.setTopComponent(tabPane);
 			this.tabPane = tabPane;
 			pack();
@@ -969,20 +971,23 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 		getCurrentAreaEditor().undo();
 	}
 
-	/**
-	 * Program entry point.
-	 *
-	 * @param args The command line arguments.
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-            try {
-                String laf = UIManager.getSystemLookAndFeelClassName();
-                UIManager.setLookAndFeel(laf);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            new Main();
-        });
-	}
+
+
+    /**
+     * Program entry point.
+     *
+     * @param args The command line arguments.
+     */
+    public static void main(String[] args) {
+
+        // Properties that must be set before amy AWT classes are loaded.
+        // Note that some of these are also configured for our installable
+        // package via jpackage, but are also set here for testing before
+        // releases
+        MacOSUtil.setApplicationName("Mario Level Editor");
+        MacOSUtil.setApplicationAppearance(MacOSUtil.AppAppearance.SYSTEM);
+
+        EditorAppContext context = new EditorAppContext();
+        SwingUtilities.invokeLater(() -> context.createApplication(args).setVisible(true));
+    }
 }
