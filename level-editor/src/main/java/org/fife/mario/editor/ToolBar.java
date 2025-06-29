@@ -89,6 +89,7 @@ class ToolBar extends CustomizableToolBar implements ActionListener {
 
 	/**
 	 * Called when the active layer changes.
+     *
 	 * @param e The action performed.
 	 */
 	public void actionPerformed(ActionEvent e) {

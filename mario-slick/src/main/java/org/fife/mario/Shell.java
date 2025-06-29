@@ -29,6 +29,10 @@ public class Shell extends Character {
 
     /**
      * Constructor.
+     *
+     * @param x The x-coordinate of the shell.
+     * @param y The y-coordinate of the shell.
+     * @param color The color of the shell.
      */
     public Shell(float x, float y, int color) throws SlickException {
         setLocation(x, y);

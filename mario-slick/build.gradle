@@ -18,9 +18,6 @@ dependencies {
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-applicationName = 'mario'
-mainClassName = 'org.fife.mario.Main'
-
 def nativesSubdir = project.findProperty('nativesSubdir') ?: null
 if (nativesSubdir == null) {
     // Default to the current OS
@@ -32,10 +29,14 @@ if (nativesSubdir == null) {
         nativesSubdir = 'linux'
     }
 }
-// The generated start scripts define an APP_HOME environment variable. We'll use that to allow the native path
-// to be properly referenced no matter where the start script is started from.  The shell script will have its
-// syntax fixed below.
-applicationDefaultJvmArgs = [ "-Djava.library.path=%APP_HOME%/lib/native/${nativesSubdir}" ]
+application {
+    applicationName = 'mario'
+    mainClass = 'org.fife.mario.Main'
+    // The generated start scripts define an APP_HOME environment variable. We'll use that to allow the native path
+    // to be properly referenced no matter where the start script is started from.  The shell script will have its
+    // syntax fixed below.
+    applicationDefaultJvmArgs = [ "-Djava.library.path=%APP_HOME%/lib/native/${nativesSubdir}" ]
+}
 
 task createStartScripts(type: CreateStartScripts) {
     applicationName = 'mario'

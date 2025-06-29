@@ -44,6 +44,9 @@ public class FlyingKoopaTroopa extends KoopaTroopa {
 
 	/**
 	 * Constructor.
+	 *
+	 * @param x The x-coordinate of the koopa.
+	 * @param y The y-coordinate of the koopa.
 	 */
 	public FlyingKoopaTroopa(float x, float y) throws SlickException {
 		super(x, y);

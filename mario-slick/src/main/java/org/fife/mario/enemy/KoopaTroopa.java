@@ -46,6 +46,9 @@ public class KoopaTroopa extends Enemy {
 
     /**
      * Constructor.
+     *
+     * @param x The x-coordinate of the Koopa Troopa.
+     * @param y The y-coordinate of the Koopa Troopa.
      */
     public KoopaTroopa(float x, float y) throws SlickException {
         this(null, x, y, COLOR_GREEN);

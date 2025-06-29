@@ -24,6 +24,7 @@ public abstract class Animation extends AbstractEntity {
 	 * <code>true</code>).  This gives this animation a chance to perform any
 	 * arbitrary actions it wants.
 	 *
+	 * @param mario
 	 * @return A character to replace this animation with, or <code>null</code>
 	 *         for none.
 	 */

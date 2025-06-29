@@ -37,7 +37,8 @@ public class Area {
     private List<FutureTask> futureEvents;
     private Map<Position, WarpInfo> warps;
     private boolean flyingFish;
-    public float xOffs, yOffs;
+    public float xOffs;
+    public float yOffs;
     private Rectangle2D.Float updateBounds;
     private org.newdawn.slick.Animation coinAnim;
     private Random random;
@@ -704,6 +705,7 @@ public class Area {
      * @param container
      * @param game
      * @param g
+     * @param filter
      */
     public void renderForeground(GameContainer container, StateBasedGame game,
                                  Graphics g, Color filter) throws SlickException {
@@ -779,6 +781,7 @@ public class Area {
      * @param container
      * @param game
      * @param g
+     * @param filter
      * @return The first visible column.
      */
     public int renderTiles(GameContainer container, StateBasedGame game,
@@ -998,19 +1001,19 @@ public class Area {
         }
 
         // Update any other entities.
-        int updatedCharCount = 0;
-        int totalCharCount = 0;
+        // int updatedCharCount = 0;
+        // int totalCharCount = 0;
         //for (Character c : otherCharacters) {
         for (Iterator<Character> i = otherCharacters.iterator(); i.hasNext();) {
             Character c = i.next();
-            totalCharCount++;
+            // totalCharCount++;
             if (isInUpdateBounds(c)) {
                 c.update(container, game, delta);
                 if (c.isDone()) {
                     System.out.println("Removing: " + c);
                     i.remove();
                 }
-                updatedCharCount++;
+                // updatedCharCount++;
             }
         }
         //System.out.println("Updated characters: " + updatedCharCount + "/" + totalCharCount);

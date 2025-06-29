@@ -175,7 +175,7 @@ public class CheckScoresState extends BasicGameState {
 
     }
 
-    private class CheckScoresRunnable implements Runnable {
+    private final class CheckScoresRunnable implements Runnable {
 
         public void run() {
             System.out.println("Checking scores...");

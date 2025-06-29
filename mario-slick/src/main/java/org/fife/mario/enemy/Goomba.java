@@ -47,6 +47,9 @@ public class Goomba extends Enemy {
 
 	/**
 	 * Constructor.
+	 *
+	 * @param x The x-coordinate of the Goomba.
+	 * @param y The y-coordinate of the Goomba.
 	 */
 	public Goomba(int x, int y) throws SlickException {
 		this(null, x, y);

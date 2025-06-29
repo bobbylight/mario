@@ -520,6 +520,8 @@ public class Mario extends Character {
 	 * Causes Mario to lose his momentum.  Can also toggle his "airborne"
 	 * status.
 	 *
+	 * @param imgX
+	 * @param imgY
 	 * @param airborne Whether Mario's airborne status should be set to
 	 *        <code>true</code>.
 	 */
