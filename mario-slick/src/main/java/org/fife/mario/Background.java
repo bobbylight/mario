@@ -52,6 +52,7 @@ public class Background {
 	 * @param container
 	 * @param game
 	 * @param g
+	 * @param filter
 	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g,
 								Color filter) {

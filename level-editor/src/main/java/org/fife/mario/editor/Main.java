@@ -953,10 +953,10 @@ public class Main extends AbstractGUIApplication<EditorPrefs> implements Actions
 		tilePalette.setTileset(imgResource);
 		getCurrentAreaEditor().repaint();
 		String key = TILESET_BROWN_ACTION_KEY;
-		if (tileset.equals("ground_blue")) {
+		if ("ground_blue".equals(tileset)) {
 			key = TILESET_BLUE_ACTION_KEY;
 		}
-		else if (tileset.equals("underground_brown")) {
+		else if ("underground_brown".equals(tileset)) {
 			key = TILESET_UNDERGROUND_BROWN_ACTION_KEY;
 		}
 		getAction(key).putValue(Action.SELECTED_KEY, Boolean.TRUE);

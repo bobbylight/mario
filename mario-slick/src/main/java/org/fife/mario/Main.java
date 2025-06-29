@@ -52,7 +52,7 @@ container.setMultiSample(2);
 	}
 
 private static AppGameContainer app;
-private boolean zoomed = false;
+private boolean zoomed;
 @Override
 public void keyPressed(int key, char ch) {
 	if (key==org.newdawn.slick.Input.KEY_F1) {

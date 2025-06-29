@@ -71,6 +71,8 @@ public class AreaEditor extends JComponent implements Scrollable {
      * Constructor.
      *
      * @param parent The parent application.
+     * @param rowCount The number of rows.
+     * @param colCount The number of columns.
      */
     public AreaEditor(Main parent, int rowCount, int colCount) {
 

@@ -111,7 +111,7 @@ public final class GameInfo {
 		this.text = text;
 	}
 
-    private static class GameData {
+    private static final class GameData {
 
 	    private List<String> levels;
 

@@ -171,7 +171,7 @@ class NewAreaDialog extends EscapableDialog implements ActionListener {
     /**
      * Listens for events in this dialog.
      */
-	private class Listener implements DocumentListener {
+	private final class Listener implements DocumentListener {
 
 		public void changedUpdate(DocumentEvent e) {
 			handleDocumentEvent(e);

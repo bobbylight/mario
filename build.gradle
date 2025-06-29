@@ -1,7 +1,7 @@
 allprojects {
 
     wrapper {
-        gradleVersion = '8.10.2'
+        gradleVersion = '8.14.2'
     }
 
     if (file('src/main/java').directory) {
@@ -9,19 +9,19 @@ allprojects {
         apply plugin: 'checkstyle'
 
         compileJava {
-            sourceCompatibility '17'
-            targetCompatibility '17'
+            sourceCompatibility = '17'
+            targetCompatibility = '17'
             options.debug = true
             options.debugOptions.debugLevel = 'source,vars,lines'
             options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
         }
 
         checkstyle {
-            toolVersion '8.44'
+            toolVersion = '10.26.0'
             configDirectory = file("$rootProject.projectDir/config/checkstyle")
         }
     }
 }
 
-group 'org.fife'
-version '0.1.0-SNAPSHOT'
+group = 'org.fife'
+version = '0.1.0-SNAPSHOT'
