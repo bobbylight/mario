@@ -15,7 +15,7 @@ To build and run an executable package in `build/install/mario` for your OS:
 ```bash
 ./gradlew build installDist
 cd mario-slick/build/install/mario
-bin/mario # bin/mario.bat on Windows
+./bin/mario # bin/mario.bat on Windows
 ```
 
 To build the executable package for a different OS, specify the proper
