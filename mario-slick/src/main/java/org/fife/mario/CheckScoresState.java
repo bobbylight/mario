@@ -3,6 +3,8 @@ package org.fife.mario;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -182,7 +184,7 @@ public class CheckScoresState extends BasicGameState {
             List<Score> scores = new ArrayList<>();
 
             try {
-                URL url = new URL(URL_SPEC);
+                URL url = new URI(URL_SPEC).toURL();
                 URLConnection con = url.openConnection();
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
@@ -193,7 +195,7 @@ public class CheckScoresState extends BasicGameState {
                     scores.add(score);
                 }
                 in.close();
-            } catch (IOException ioe) {
+            } catch (URISyntaxException | IOException ioe) {
                 // TODO: Percolate message to user.
                 Score score = new Score(ioe.getMessage(), null, null);
                 scores.add(score);

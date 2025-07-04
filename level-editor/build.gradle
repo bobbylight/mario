@@ -1,6 +1,7 @@
 plugins {
     id 'java'
 	id 'application'
+	id 'jacoco'
 }
 
 repositories {
@@ -14,8 +15,6 @@ dependencies {
     implementation 'com.fifesoft.rtext:fife.common:6.0.4-SNAPSHOT'
     implementation project(':mario-common')
     implementation project(':mario-slick')
-
-    testImplementation 'junit:junit:4.12'
 }
 
 application {
