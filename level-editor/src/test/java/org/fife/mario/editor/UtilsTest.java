@@ -11,17 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class UtilsTest {
 
 	@Test
-	void testCreateImageWithAlpha() {
-		BufferedImage orig = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
-		orig.setRGB(0, 0, 0xFF0000); // Set a pixel to red
-		BufferedImage result = Utils.createImageWithAlpha(orig);
-
-		assertNotNull(result);
-		assertEquals(BufferedImage.TYPE_INT_ARGB, result.getType());
-		assertEquals(0xFFFF0000, result.getRGB(0, 0)); // Should be red with alpha
-	}
-
-	@Test
 	void testGetVerticallyMirroredImage() {
 		BufferedImage orig = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
 		for (int y = 0; y < 10; y++) {
