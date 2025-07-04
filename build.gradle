@@ -3,24 +3,24 @@ allprojects {
     wrapper {
         gradleVersion = '8.14.2'
     }
+}
 
-    if (file('src/main/java').directory) {
-        apply plugin: 'java'
-        apply plugin: 'checkstyle'
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'checkstyle'
 
-        compileJava {
-            sourceCompatibility = '21'
-            targetCompatibility = '21'
-            options.debug = true
-            options.debugOptions.debugLevel = 'source,vars,lines'
-            options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
-        }
+	compileJava {
+		sourceCompatibility = '21'
+		targetCompatibility = '21'
+		options.debug = true
+		options.debugOptions.debugLevel = 'source,vars,lines'
+		options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
+	}
 
-        checkstyle {
-            toolVersion = '10.26.0'
-            configDirectory = file("$rootProject.projectDir/config/checkstyle")
-        }
-    }
+	checkstyle {
+		toolVersion = '10.26.0'
+		configDirectory = file("$rootProject.projectDir/config/checkstyle")
+	}
 }
 
 group = 'org.fife'
