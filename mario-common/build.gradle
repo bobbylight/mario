@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+assert JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}

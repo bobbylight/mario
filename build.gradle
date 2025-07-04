@@ -9,8 +9,8 @@ allprojects {
         apply plugin: 'checkstyle'
 
         compileJava {
-            sourceCompatibility = '17'
-            targetCompatibility = '17'
+            sourceCompatibility = '21'
+            targetCompatibility = '21'
             options.debug = true
             options.debugOptions.debugLevel = 'source,vars,lines'
             options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'

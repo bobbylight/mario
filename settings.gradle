@@ -1,3 +1,3 @@
 rootProject.name = 'mario'
 
-include 'level-editor', 'mario-slick'
+include 'mario-common', 'level-editor', 'mario-slick'
